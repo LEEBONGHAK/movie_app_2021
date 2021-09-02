@@ -5,17 +5,17 @@ import "./Movie.css";
 
 function Movie({id, year, title, summary, poster, genres}) {
   return (
-    <Link to={{
-      pathname: "/movie-detail",
-      state: {
-        title,
-        year,
-        summary,
-        poster,
-        genres
-      }
-    }}>
-      <div className="movie">
+    <div className="movie">
+      <Link to={{
+        pathname: `/movie/${id}`,
+        state: {
+          title,
+          year,
+          summary,
+          poster,
+          genres
+        }
+      }}>
         <img src={poster} alt={title} title={title} />
         <div className="movie__data">
           <h3 className="movie__title">{title}</h3>
@@ -27,8 +27,8 @@ function Movie({id, year, title, summary, poster, genres}) {
           </ul>
           <p className="movie__summary">{summary.slice(0, 140)}...</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
