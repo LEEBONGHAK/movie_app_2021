@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import Movie from "./Movie";
+import "./App.css";
 
 // Function component : function, 어떤 것을 return하고 screen에 표시
 // Class component : react componet로부터 확장되고 screen에 표시, react는 class componenet의 render method를 자동으로 실행
@@ -22,11 +23,26 @@ class App extends React.Component {  // class react component
   render () {
     const {isLoading, movies} = this.state;
     return (
-      <div>
-        {isLoading ? "Loading..." : movies.map(movie => (
-          <Movie key={movie.id} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image} />
-        ))}
-      </div>
+      <section class="container">
+        {isLoading 
+          ? (<div class="loader">
+            <span class="loader__text">Loading...</span>
+            </div> 
+          ) : (
+            <div class="movies">
+              {movies.map(movie => (
+                <Movie 
+                  key={movie.id} 
+                  id={movie.id} 
+                  year={movie.year} 
+                  title={movie.title} 
+                  summary={movie.summary} 
+                  poster={movie.medium_cover_image} 
+                />
+              ))}
+            </div>  
+          )}
+      </section>
     );
   }
 }
